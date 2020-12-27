@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="" id="example"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script>
+
+
+    </script>
+    <script type="text/babel">
+        //需求定义一个区域，点击切换状态 
+        class Like extends React.Component {
+            constructor(props) {
+                super(props)
+                // 初始化状态
+                this.state = {
+                    isLike: 1
+                }
+                // 将新增方法中的this绑定组件对象(也可以在render中的click上绑定，不过效率低，每次render都会重新绑定)
+                this.handleClike=this.handleClike.bind(this)
+            }
+            handleClike() {
+                // 新添加的方法：内部的this默认不是组件对象，而是undefined 
+                console.log(this)  //undefined
+                //得到状态
+                const { isLike } = this.state
+                //更新状态
+                this.setState({
+                    isLike: !isLike
+                })
+
+                
+
+            }
+            render() {
+                const { isLike } = this.state
+                return <h2 onClick={this.handleClike}>{isLike ? '喜欢' : '不喜欢'}</h2>
+            }
+
+        }
+        // 2.渲染组件标签
+        ReactDOM.render(<Like />, document.getElementById('example'))
+    </script>
+</body>
+
+</html>

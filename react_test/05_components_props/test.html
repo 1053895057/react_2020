@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="" id="example1"></div>
+    <div class="" id="example2"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+        //需求：自定义显示人员信息的组件
+        // （1）没有性别指定为男
+        // （2） 没有年龄，默认为18
+        // 1.定义组件
+
+        // function Person(props) {
+        //     return (
+        //         <ul>
+        //             <li>姓名：{props.name}</li>
+        //             <li>年龄：{props.age}</li>
+        //             <li>性别：{props.sex}</li>
+        //         </ul>
+        //     )
+        // }
+
+        class Person extends React.Component {
+            render() {
+                return (
+                    <ul>
+                        <li>姓名：{this.props.name}</li>
+                        <li>年龄：{this.props.age}</li>
+                        <li>性别：{this.props.sex}</li>
+                    </ul>
+                )
+            }
+        }
+        //指定属性默认值
+        Person.defaultProps = {
+            sex: '男',
+            age: 18
+        }
+        // 指定属性的类型和必要性
+        Person.propTypes = {
+            name: PropTypes.string.isRequired,
+            age: PropTypes.number
+        }
+        // 2.渲染组件标签
+        const p1 = {
+            name: 'Tom',
+            age: 18,
+            sex: '男'
+        }
+        // ReactDOM.render(<Person name={p1.name} age={p1.age} sex={p1.sex}/>, document.getElementById('example1'))
+        /*
+            ...的作用
+            1.打包
+            function fn(...as){}
+            fn(1,2,3)
+            as相当于一个数组[1,2,3]
+
+            2.解包
+            const arr1=[1,2,3]
+            const arr2=[4,...arr1]
+        */
+        ReactDOM.render(<Person {...p1} />, document.getElementById('example1'))
+        const p2 = {
+
+        }
+        ReactDOM.render(<Person name={p2.name} age={p2.age} sex={p2.sex} />, document.getElementById('example2'))
+
+    </script>
+</body>
+
+</html>

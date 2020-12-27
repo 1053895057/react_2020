@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="" id="example"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script>
+
+
+    </script>
+    <script type="text/babel">
+        // 自定义组件
+        /*
+            （1）让指定的文本做显示、影藏的动画
+            （2）切换时间是2s
+            （3）点击按钮从界面中移除组件
+        */
+        class Life extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    opacity: 1
+                }
+                this.distroyCompponent=this.distroyCompponent.bind(this)
+            }
+            distroyCompponent(){
+                ReactDOM.unmountComponentAtNode(document.getElementById('example'))
+            }
+            comconentWillMount(){
+                console.log('comconentWillMount')
+            }
+            componentDidMount() {
+                console.log('componentDidMount')
+                // 启动循环定时器
+                this.interval=setInterval(() => {
+                    console.log("定时器执行")
+                    let { opacity } = this.state
+                    opacity -= 0.1
+                    if (opacity <= 0) {
+                        opacity = 1
+                    }
+                    this.setState({ opacity })
+                }, 200)
+            }
+            componentWillUpdate(){
+                console.log('componentWillUpdate')
+            }
+            componentDidUpdate(){
+                console.log('componentDidUpdate')
+            }
+            componentWillUnmount(){
+                console.log('componentWillUnmount')
+                // 清除定时器
+                clearInterval(this.interval)
+            }
+            render() {
+                console.log("render()")
+                const { opacity } = this.state
+                return (
+                    <div>
+                        <h2 style={{ opacity }}>{this.props.msg}</h2>
+                        <button onClick={this.distroyCompponent}>切换</button>
+                    </div>
+                )
+            }
+        }
+
+        // 2.渲染组件标签
+        ReactDOM.render(<Life msg="react太好了" />, document.getElementById('example'))
+
+    </script>
+</body>
+
+</html>
