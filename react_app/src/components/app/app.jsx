@@ -4,6 +4,9 @@ import PubsubJs from 'pubsub-js'
 import CommentAdd from '../comment-add/comment-add'
 import CommentList from '../comment-list/comment-list'
 
+//导入一个hooks例子
+import Hooks1 from '../com-hooks/useState'
+import Hooks2 from '../com-hooks/useEffect'
 
 
 // app里的删除评论的方法要传递给list，list传递给item,比较麻烦，用用发布订阅的方式做
@@ -27,27 +30,27 @@ export default class App extends Component {
         ]
     }
     // 添加评论
-    addComment=(comment)=>{
-        const {comments}=this.state
+    addComment = (comment) => {
+        const { comments } = this.state
         comments.unshift(comment)
-        this.setState({comments})
+        this.setState({ comments })
     }
 
-    componentDidMount(){
-        PubsubJs.subscribe('deleteComment',(msg,index)=>{
+    componentDidMount() {
+        PubsubJs.subscribe('deleteComment', (msg, index) => {
             this.delComment(index)
         })
     }
 
     // 删除评论
-    delComment=(index)=>{
-        const {comments}=this.state
-        comments.splice(index,1)
-        this.setState({comments})
+    delComment = (index) => {
+        const { comments } = this.state
+        comments.splice(index, 1)
+        this.setState({ comments })
     }
-    
+
     render() {
-        const {comments}=this.state
+        const { comments } = this.state
         return (
             <div>
                 <header className="site-header jumbotron">
@@ -60,8 +63,15 @@ export default class App extends Component {
                     </div>
                 </header>
                 <div className="container">
-                    <CommentAdd addComment={this.addComment}/>
+                    <CommentAdd addComment={this.addComment} />
                     <CommentList comments={comments}></CommentList>
+                </div>
+                <hr/>
+                <h2>学习hooks:</h2>
+                <hr/>
+                <div className="hooks">
+                    <Hooks1></Hooks1>
+                    <Hooks2></Hooks2>
                 </div>
             </div>
         )
