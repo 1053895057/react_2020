@@ -7,6 +7,8 @@ import CommentList from '../comment-list/comment-list'
 //导入一个hooks例子
 import Hooks1 from '../com-hooks/useState'
 import Hooks2 from '../com-hooks/useEffect'
+import Hooks3 from '../com-hooks/useRef'
+import Hooks4 from '../com-hooks/myContext'
 
 
 // app里的删除评论的方法要传递给list，list传递给item,比较麻烦，用用发布订阅的方式做
@@ -72,6 +74,8 @@ export default class App extends Component {
                 <div className="hooks">
                     <Hooks1></Hooks1>
                     <Hooks2></Hooks2>
+                    <Hooks3></Hooks3>
+                    <Hooks4></Hooks4>
                 </div>
             </div>
         )
