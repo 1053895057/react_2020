@@ -3,22 +3,24 @@
 
 import { useState, useRef,createContext} from 'react'
 
-import ChildContext from './useContext'
+import ChildContext from './04useContext'
 // 创建容器组件
 export const MyContext = createContext();
 
 export default () => {
     let [count, setCount] = useState(0)
+    let [name,setName]=useState('tsj')
     const inputEl=useRef(null)
     return (
         <>
-            <MyContext.Provider value={count}>
+            <MyContext.Provider value={{count,name}} >
                 <h3>useContext</h3>
                 <ChildContext></ChildContext>
             </MyContext.Provider>
             <input type="text" ref={inputEl}/>
             <button onClick={()=>{
                 setCount(inputEl.current.value)
+                setName('jack')
             }}>点击</button>
         </>
     )
