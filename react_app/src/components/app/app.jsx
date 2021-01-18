@@ -11,6 +11,8 @@ import Hooks3 from '../com-hooks/03useRef'
 import Hooks4 from '../com-hooks/04myContext'
 import Hooks5 from '../com-hooks/05useMemo' 
 import Hooks6 from '../com-hooks/06useCallback'
+import Hooks7_1 from '../com-hooks/07useImeperativeHandle'
+import Hooks7_2 from '../com-hooks/07useImperativeHandle1'
 
 
 // app里的删除评论的方法要传递给list，list传递给item,比较麻烦，用用发布订阅的方式做
@@ -80,6 +82,8 @@ export default class App extends Component {
                     <Hooks4></Hooks4>
                     <Hooks5></Hooks5>
                     <Hooks6></Hooks6>
+                    <Hooks7_1></Hooks7_1>
+                    <Hooks7_2></Hooks7_2>
                 </div>
             </div>
         )
